@@ -1,0 +1,30 @@
+/* SVG is inline: animate the ship, not the cranes or harbor. */
+.port > svg { width: 100%; height: 100%; }
+.ship-sailing { animation: ship-sailing 11s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.hero-plane { position: absolute; width: 155px; top: 10%; left: -28%; color: var(--ink); animation: plane-crossing 19s linear infinite; pointer-events: none; }
+.hero-plane svg { display: block; width: 100%; }
+@keyframes ship-sailing {
+    0%, 100% { transform: translate(-14px, 0) rotate(-.2deg); }
+    50% { transform: translate(20px, -4px) rotate(.2deg); }
+}
+@keyframes plane-crossing {
+    0%, 8% { transform: translateX(0) translateY(12px); opacity: 0; }
+    12% { opacity: 1; }
+    70% { opacity: 1; }
+    77%, 100% { transform: translateX(1100px) translateY(-28px); opacity: 0; }
+}
+nav [aria-current="page"] { color: var(--orange); }
+@media (max-width: 580px) {
+    .hero-plane { width: 110px; top: 15%; }
+    @keyframes plane-crossing { 0%, 8% { transform: translateX(0); opacity: 0; } 12%, 70% { opacity: 1; } 77%, 100% { transform: translateX(700px) translateY(-20px); opacity: 0; } }
+}
+@media (prefers-reduced-motion: reduce) { .ship-sailing { animation: none; } .hero-plane { display: none; } }
+
+.ui-arrow { width: 1.15em; height: 1.15em; display: inline-block; vertical-align: middle; flex-shrink: 0; }
+
+.paused .port { animation: none; opacity: 1; clip-path: none; transform: none; }
+
+.hero-plane{width:190px;top:2%}.port-controls{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:16px 24px;border-bottom:1px solid var(--line);font-size:12px;background:#e8ebdf}.port-controls button{display:flex;align-items:center;gap:20px;min-height:44px;padding:10px 16px;background:var(--ink);color:var(--paper);border:0}.port-controls button:disabled{opacity:.55;cursor:wait}#port-container{cursor:pointer;transition:filter .2s}#port-container:hover{filter:drop-shadow(0 0 5px #fa400b80)}#port-container:focus-visible{outline:none;filter:drop-shadow(0 0 6px #fa400b)}.port-wrap .port{pointer-events:auto}.port-wrap .scan{pointer-events:none}
+@media(max-width:720px){.hero-plane{width:135px;top:0}.port-controls{padding:14px 18px;flex-direction:column;align-items:stretch;gap:8px}.port-controls button{justify-content:space-between;min-height:48px}.port-controls>span{font-size:11px}}
+/* The vessel is berthed while the travelling crane unloads its stacks. */
+.cargo-container{cursor:pointer;transition:filter .2s}.cargo-container.is-available:hover,.cargo-container:focus-visible{filter:drop-shadow(0 0 5px #fa400b);outline:none}.cargo-container.is-selected rect,.cargo-container.is-available:hover rect{fill:var(--orange)}.cargo-container[aria-disabled=true]{cursor:not-allowed}.cargo-container.is-selected{cursor:progress}.workers-loading .worker{animation:worker-signal .65s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:bottom}.workers-loading .worker:nth-child(2){animation-delay:.2s}@keyframes worker-signal{to{rotate:8deg}}@media(prefers-reduced-motion:reduce){.workers-loading .worker{animation:none}}.port-controls #port-reset{background:transparent;color:var(--ink);border:1px solid var(--line)}
