@@ -1,0 +1,17 @@
+{
+  "resources/css/rialchi/app.css": {
+    "file": "assets/app-BeW3JsYv.css",
+    "name": "app",
+    "names": [
+      "app.css"
+    ],
+    "src": "resources/css/rialchi/app.css",
+    "isEntry": true
+  },
+  "resources/js/rialchi/app.js": {
+    "file": "assets/app-BWCAkgmm.js",
+    "name": "app",
+    "src": "resources/js/rialchi/app.js",
+    "isEntry": true
+  }
+}
