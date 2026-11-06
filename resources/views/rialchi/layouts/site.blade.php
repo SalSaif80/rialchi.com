@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="@yield('description', 'ريالتشي — رحلة استيراد واضحة من اختيار المنتج إلى استلام الشحنة.')">
     <meta name="theme-color" content="#f2f2e9">
+        <link rel="icon" type="image/png" href="{{ asset("assets/images/brand/logo-rialchi.png") }}">
     <title>@yield('title', 'Rialchi — شحنتك، أولويتنا')</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -1,44 +1,115 @@
 @extends('rialchi.layouts.site')
 @section('title', 'تتبع شحنتك — Rialchi')
-@section('description', 'رحلة شحنتك خطوة بخطوة، ومتابعة سهلة مع فريق ريالتشي.')
+@section('description', 'تتبع شحنتك بسهولة مع ريالتشي. أدخل رقم البوليصة لمعرفة حالة الشحنة.')
+
 @section('content')
 <section class="tracking-page">
-  <div class="tracking-heading"><div class="eyebrow">[من المورد إلى بابك]</div><h1>كل خطوة،<br><span>أقرب إليك.</span></h1><p>رقم واحد. تواصل أسهل. ورحلة واضحة.</p></div>
-  <div class="tracking-grid">
-    <section class="tracking-panel" aria-labelledby="lookup-title">
-      <span class="tracking-kicker">01 / متابعة شحنتك</span><h2 id="lookup-title">أين شحنتي؟</h2>
-      <p>أدخل رقمك لنجهّز استفسارك لفريق ريالتشي.</p>
-      <form id="tracking-form">
-        <label for="tracking-number">رقم الشحنة أو الطلب</label>
-        <input id="tracking-number" name="tracking_number" dir="ltr" placeholder="RLC-2026-001" maxlength="80" required autocomplete="off" aria-describedby="tracking-help">
-        <p id="tracking-help" class="field-help">تجده في رسالة تأكيد الشحن أو مستند الطلب.</p>
-        <button class="primary" type="submit">متابعة شحنتي @include('rialchi.components.icons.arrow-left')</button>
-      </form>
-      <div id="tracking-result" class="tracking-result" hidden role="status" aria-live="polite">
-        <strong>استفسارك جاهز للإرسال</strong><p>الحالة المباشرة غير متاحة حاليًا. فريقنا يساعدك بمعرفة آخر تحديث.</p>
-        <p id="tracking-message"></p><a id="tracking-whatsapp" class="journey-cta" target="_blank" rel="noopener noreferrer">أرسل عبر واتساب @include('rialchi.components.icons.arrow-up-right')</a>
+  <div class="tracking-container">
+    
+    <!-- 1. واجهة البحث -->
+    <div id="search-view" class="tracking-view">
+      <div class="tracking-hero">
+        <span class="tracking-kicker">RLC / نظام التتبع</span>
+        <h1>أين شحنتك الآن؟</h1>
+        <p>أدخل رقم البوليصة (Bill of Lading) لمعرفة تفاصيل الرحلة.</p>
+        
+        <form id="tracking-form" class="search-form">
+          <div class="input-group">
+            <input type="text" id="tracking-input" dir="ltr" placeholder="مثال: RLC-98231-SA" required autocomplete="off">
+            <button type="submit" class="primary" id="submit-btn">تتبع الشحنة</button>
+          </div>
+          <p class="field-help">ما عندك رقم؟ <a data-wa="السلام عليكم، أريد المساعدة في معرفة رقم شحنتي." href="https://wa.me/{{ config('rialchi.whatsapp') }}">تواصل معنا عبر واتساب</a></p>
+        </form>
       </div>
-      <a class="tracking-help-link" data-wa="السلام عليكم، أريد المساعدة في معرفة رقم شحنتي. اسم صاحب الطلب: " href="https://wa.me/{{ config('rialchi.whatsapp') }}">ما عندك رقم الشحنة؟ نساعدك</a>
-      <div class="tracking-service-note"><i class="status-dot"></i><span>المتابعة حاليًا مع خدمة العملاء عبر واتساب.</span></div>
-      <noscript><p>تواصل عبر رابط واتساب أعلاه واذكر رقم شحنتك.</p></noscript>
-    </section>
-    <section class="shipment-journey" aria-labelledby="journey-title">
-      <div class="journey-card-top"><span class="tracking-kicker">02 / افهم مراحل الرحلة</span><span class="demo-badge">مثال توضيحي</span></div>
-      <h2 id="journey-title">من هناك… إلى عندك.</h2><p class="demo-disclaimer">هذه مراحل نموذجية، وليست حالة شحنتك الفعلية.</p>
-      <div class="route-map" aria-hidden="true"><span>بلد المنشأ</span><div class="route-dots"><i></i><b>RLC</b><i></i></div><span>بلد الوجهة</span></div>
-      <div class="journey-current"><span>المحطة في المثال</span><strong id="demo-current">الشحنة في البحر</strong><span id="demo-count">03 / 06</span></div>
-      <ol class="shipment-timeline">
-        <li class="is-complete"><button type="button" data-tracking-step="0" aria-pressed="false"><span class="step-marker">01</span><span><strong>استلام من المورد</strong><small>تجهيز المنتج وفحصه قبل الشحن.</small></span><span class="step-state">تمّت</span></button></li>
-        <li class="is-complete"><button type="button" data-tracking-step="1" aria-pressed="false"><span class="step-marker">02</span><span><strong>مغادرة ميناء الشحن</strong><small>تحميل الحاوية وانطلاقها من بلد المنشأ.</small></span><span class="step-state">تمّت</span></button></li>
-        <li class="is-current"><button type="button" data-tracking-step="2" aria-pressed="true"><span class="step-marker">03</span><span><strong>الشحنة في البحر</strong><small>في طريقها إلى ميناء الوجهة.</small></span><span class="step-state">الآن</span></button></li>
-        <li class=""><button type="button" data-tracking-step="3" aria-pressed="false"><span class="step-marker">04</span><span><strong>الوصول والتخليص</strong><small>وصول الحاوية وإنهاء الإجراءات الجمركية.</small></span><span class="step-state">لاحقًا</span></button></li>
-        <li class=""><button type="button" data-tracking-step="4" aria-pressed="false"><span class="step-marker">05</span><span><strong>خرجت للتسليم</strong><small>نقل الشحنة من الميناء إلى عنوانك.</small></span><span class="step-state">لاحقًا</span></button></li>
-        <li class=""><button type="button" data-tracking-step="5" aria-pressed="false"><span class="step-marker">06</span><span><strong>تم التسليم</strong><small>وصول الشحنة واستلامها.</small></span><span class="step-state">لاحقًا</span></button></li>
-      </ol>
-      <p class="timeline-hint">اضغط على أي محطة لتستكشف الرحلة.</p>
-      <p class="demo-live" id="demo-announcement" aria-live="polite"></p>
-    </section>
+    </div>
+
+    <!-- 2. واجهة التحميل (تحاكي جلب البيانات) -->
+    <div id="loading-view" class="tracking-view" hidden>
+      <div class="loading-box">
+        <div class="loading-bar"></div>
+        <p class="mono">CONNECTING TO SERVER...</p>
+        <h3>جاري جلب بيانات الشحنة...</h3>
+      </div>
+    </div>
+
+    <!-- 3. واجهة النتائج -->
+    <div id="results-view" class="tracking-view" hidden>
+      
+      <div class="results-header">
+        <button type="button" id="back-to-search" class="back-btn">← بحث جديد</button>
+        <div class="status-badge">الحالة: قيد النقل</div>
+      </div>
+
+      <!-- بيانات الشحنة -->
+      <div class="shipment-grid">
+        <div class="shipment-cell">
+          <span class="cell-label">رقم البوليصة</span>
+          <strong class="cell-value mono" id="res-tracking-num">-</strong>
+        </div>
+        <div class="shipment-cell">
+          <span class="cell-label">طريقة الشحن</span>
+          <strong class="cell-value">شحن جوي</strong>
+        </div>
+        <div class="shipment-cell">
+          <span class="cell-label">الوزن</span>
+          <strong class="cell-value">450 كجم</strong>
+        </div>
+        <div class="shipment-cell">
+          <span class="cell-label">الوجهة</span>
+          <strong class="cell-value">الرياض، السعودية</strong>
+        </div>
+      </div>
+
+      <!-- الخط الزمني -->
+      <div class="timeline-box">
+        <div class="timeline-header">
+          <h3>مسار الرحلة</h3>
+          <span class="mono">TRACKING ID: <span id="res-tracking-num-2">-</span></span>
+        </div>
+        
+        <ul class="timeline">
+          <li class="timeline-item done">
+            <div class="t-marker">✓</div>
+            <div class="t-content">
+              <h4>تم استلام الشحنة من المورد</h4>
+              <p>ميناء شنغهاي، الصين</p>
+              <span class="t-date mono">28 أكتوبر - 10:00 ص</span>
+            </div>
+          </li>
+          <li class="timeline-item done">
+            <div class="t-marker">✓</div>
+            <div class="t-content">
+              <h4>مغادرة ميناء الشحن</h4>
+              <p>على متن الرحلة SV-892</p>
+              <span class="t-date mono">29 أكتوبر - 08:30 م</span>
+            </div>
+          </li>
+          <li class="timeline-item active">
+            <div class="t-marker pulse"></div>
+            <div class="t-content">
+              <h4>في الطريق إلى الوجهة</h4>
+              <p>الشحنة حالياً في الجو</p>
+              <span class="t-date mono">متوقع الوصول: 02 نوفمبر</span>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <div class="t-marker"></div>
+            <div class="t-content">
+              <h4>التخليص الجمركي</h4>
+              <p>ميناء الملك خالد، الرياض</p>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <div class="t-marker"></div>
+            <div class="t-content">
+              <h4>خرجت للتسليم</h4>
+              <p>في طريقها إلى عنوانك</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      
+    </div>
   </div>
-  <div class="tracking-note"><span>معلومة على الطريق</span><p>رقم الطلب قد يختلف عن رقم بوليصة الشحن. أرسل الرقم المتوفر لديك، والفريق يساعدك في المتابعة. تختلف مراحل الرحلة حسب طريقة الشحن.</p></div>
 </section>
 @endsection
