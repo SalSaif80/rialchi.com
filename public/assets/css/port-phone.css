@@ -1,7 +1,7 @@
-/* Loaded only at the existing phone breakpoint. Both views use the same live SVG. */
+/* Keep the ship, crane and unloading berth in one coordinate system. */
 .hero-art {
     height: auto;
-    padding: 44px 0 54px;
+    padding: 46px 0 54px;
 }
 
 .port-wrap {
@@ -10,26 +10,24 @@
     display: block;
 }
 
-/* Frame x=40..850 of the 1200-unit port around the complete ship. */
 .port {
     position: relative;
     height: auto;
-    aspect-ratio: 810 / 530;
+    aspect-ratio: 1120 / 570;
     overflow: hidden;
 }
 
+/* Trim only the outer 40 units on either side of the original viewBox. */
 .port > #interactive-port {
     position: absolute;
     top: 0;
-    left: calc(-100% * 40 / 810);
-    width: calc(100% * 1200 / 810);
+    left: calc(-100% * 40 / 1120);
+    width: calc(100% * 1200 / 1120);
     height: auto;
 }
 
-.port-dock-detail {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-top: 1px solid var(--line);
-    pointer-events: none;
+#port-workers .worker {
+    transform-box: fill-box;
+    transform-origin: center bottom;
+    scale: 1.6;
 }
