@@ -1,0 +1,47 @@
+.port-aircraft {
+    color: #788175;
+    opacity: .64;
+    pointer-events: none;
+    animation: harbor-flight 26s linear infinite;
+}
+
+@keyframes harbor-flight {
+    from { transform: translate(-85px, 7px); }
+    to { transform: translate(1200px, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .port-aircraft { animation: none; transform: translate(250px, 0); }
+}
+
+@media (max-width: 580px) {
+    .hero-art {
+        height: auto;
+        padding: 46px 0 54px;
+    }
+
+    .port-wrap {
+        position: relative;
+        inset: auto;
+        display: block;
+    }
+
+    .port {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1200 / 570;
+    }
+
+    .port > #interactive-port {
+        display: block;
+        position: static;
+        width: 100%;
+        height: auto;
+    }
+
+    #port-workers .worker {
+        transform-box: fill-box;
+        transform-origin: center bottom;
+        scale: 1.6;
+    }
+}

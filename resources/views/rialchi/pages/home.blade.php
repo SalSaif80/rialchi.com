@@ -1,7 +1,7 @@
 @extends('rialchi.layouts.site')
 
 @push('page-styles')
-    <link rel="stylesheet" media="(max-width: 580px)" href="{{ asset('assets/css/port-phone.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/port-scene.css') }}">
 @endpush
 
 @section('content')

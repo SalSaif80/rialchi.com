@@ -10,7 +10,6 @@
 </div>
 <div class="port-wrap">
 <div class="port">@include('rialchi.components.illustrations.port')</div>
-<div class="hero-plane" aria-hidden="true">@include('rialchi.components.illustrations.plane')</div>
 <div class="scan" aria-hidden="true">
 </div>
 </div>
