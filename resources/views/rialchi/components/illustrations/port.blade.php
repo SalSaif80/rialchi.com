@@ -1,5 +1,10 @@
 <svg id="interactive-port" viewBox="0 0 1200 570" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.4" role="group" aria-label="ميناء تفاعلي" aria-describedby="port-status">
 <defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M0 6L6 0" stroke="#a9afa0" stroke-width=".5"/></pattern></defs>
+<g class="port-aircraft" aria-hidden="true">
+    <svg x="0" y="2" width="78" height="44" viewBox="0 0 320 180">
+        @include('rialchi.components.illustrations.plane')
+    </svg>
+</g>
 <g id="port-scene">
 <path d="M40 485H775m-700 12h330m40 0h300m-580 13h470" stroke="#aab3a0"/>
 <path d="M825 425H1200V540H825Z" fill="#d7dccd"/><path d="M825 445H1200M840 445v95m45-95v95m45-95v95m45-95v95m45-95v95m45-95v95m45-95v95m45-95v95" stroke="#a0a993"/>
