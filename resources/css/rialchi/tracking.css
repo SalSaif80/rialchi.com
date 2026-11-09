@@ -73,7 +73,7 @@
 }
 
 .input-group:focus-within {
-    box-shadow: 4px 4px 0 var(--orange);
+    box-shadow: 4px 4px 0 var(--accent);
     border-color: var(--ink);
 }
 
@@ -92,7 +92,7 @@
 }
 
 .input-group input::placeholder {
-    color: #a0a0a0;
+    color: #656c7b;
     font-family: 'IBM Plex Sans Arabic', sans-serif;
     direction: rtl; /* النص التوضيحي يظهر عربي */
     text-align: right;
@@ -117,8 +117,8 @@
 }
 
 .input-group button.primary:hover {
-    background: var(--orange);
-    border-right-color: var(--orange);
+    background: var(--accent);
+    border-right-color: var(--accent);
 }
 
 .field-help {
@@ -128,7 +128,7 @@
 }
 
 .field-help a {
-    color: var(--orange);
+    color: var(--accent);
     text-decoration: underline;
     text-underline-offset: 4px;
 }
@@ -157,7 +157,7 @@
     top: 0;
     height: 100%;
     width: 50%;
-    background: var(--orange);
+    background: var(--accent);
     animation: loadingAnim 1s infinite linear;
 }
 
@@ -167,7 +167,7 @@
 }
 
 .loading-box p.mono {
-    color: var(--orange);
+    color: var(--accent);
     font-size: 12px;
     margin-bottom: 10px;
 }
@@ -197,7 +197,7 @@
 .back-btn:hover { color: var(--ink); text-decoration: underline; }
 
 .status-badge {
-    background: var(--orange);
+    background: var(--accent);
     color: #fff;
     font-size: 12px;
     font-weight: 600;
@@ -304,11 +304,11 @@
 .timeline-item.done::before { background: var(--ink); }
 
 .timeline-item.active .t-marker {
-    border-color: var(--orange);
-    background: var(--orange);
+    border-color: var(--accent);
+    background: var(--accent);
 }
 .timeline-item.active .t-marker.pulse {
-    box-shadow: 0 0 0 4px #fa400b30;
+    box-shadow: 0 0 0 4px #895b2230;
 }
 
 .t-content h4 {
@@ -326,7 +326,7 @@
 
 .t-date {
     font-size: 12px;
-    color: var(--orange);
+    color: var(--accent);
 }
 .timeline-item:not(.done):not(.active) .t-date { display: none; }
 

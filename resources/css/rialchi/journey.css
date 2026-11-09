@@ -37,7 +37,7 @@
     position:relative;
     flex:1;
     min-height:280px;
-    background-image:linear-gradient(#b9bcb020 1px,transparent 1px),linear-gradient(90deg,#b9bcb020 1px,transparent 1px);
+    background-image:linear-gradient(#cfc7b820 1px,transparent 1px),linear-gradient(90deg,#cfc7b820 1px,transparent 1px);
     background-size:32px 32px}
 .journey-scene {
     position:absolute;
@@ -54,7 +54,7 @@
     height:100%;
     padding:12px 24px}
 .accent-line {
-    stroke:var(--orange);
+    stroke:var(--accent);
     stroke-width:3;
     stroke-dasharray:500;
     stroke-dashoffset:500}
@@ -63,7 +63,7 @@
 .active .moving-plane {
     animation:plane-move 4s ease-in-out infinite}
 .active .scan-line {
-    stroke:var(--orange);
+    stroke:var(--accent);
     opacity:.5;
     animation:quality-scan 3s ease-in-out infinite}
 .scene-caption {
@@ -94,7 +94,7 @@
     top:16px;
     width:0;
     height:2px;
-    background:var(--orange);
+    background:var(--accent);
     z-index:-1;
     transition:width .5s}
 .track-stop {
@@ -115,8 +115,8 @@
     font-weight:400;
     transition:background .3s,color .3s}
 .track-stop.active b,.track-stop.passed b {
-    background:var(--orange);
-    border-color:var(--orange);
+    background:var(--accent);
+    border-color:var(--accent);
     color:white}
 .track-stop.active {
     color:var(--ink)}
@@ -138,7 +138,7 @@
     display:flex;
     gap:20px;
     align-items:center;
-    color:var(--orange);
+    color:var(--accent);
     font-size:12px;
     margin-bottom:25px}
 .step-kicker>span:first-child {
@@ -154,7 +154,7 @@
     font-size:16px;
     line-height:1.9;
     max-width:480px;
-    color:#606457}
+    color:#535d70}
 .check-list {
     border-top:1px solid var(--line);
     margin-top:30px;
@@ -170,7 +170,7 @@
     display:flex;
     gap:15px}
 .check-list>div>span {
-    color:var(--orange)}
+    color:var(--accent)}
 .journey-cta {
     margin-top:30px;
     border:1px solid var(--ink);
@@ -181,8 +181,8 @@
     font-size:14px;
     transition:background .25s,color .25s}
 .journey-cta:hover {
-    background:var(--orange);
-    border-color:var(--orange);
+    background:var(--accent);
+    border-color:var(--accent);
     color:white}
 .step-next {
     font-size:10px;
@@ -191,7 +191,7 @@
 .journey-step.is-current .step-kicker {
     font-weight:600}
 .confidence {
-    background:#e9e9de;
+    background:#f0e8d9;
     border-bottom:1px solid var(--line)}
 .confidence h2 {
     margin:25px 0 45px}
@@ -233,15 +233,15 @@
     display:flex;
     align-items:center;
     gap:12px;
-    border:1px solid #73776a;
+    border:1px solid #586174;
     font-size:13px;
     box-shadow:0 5px 20px #0002;
     transition:background .25s}
 .floating-wa span {
-    color:#a8d6a1;
+    color:#f5c57f;
     font-size:20px}
 .floating-wa:hover {
-    background:#364b32}
+    background:#283752}
 .footer-bottom {
     padding-bottom:85px}
 @keyframes draw-path {
@@ -301,7 +301,7 @@
     max-height:none;
     border-left:0;
     border-right:0;
-    box-shadow:0 6px 10px #282b2609}
+    box-shadow:0 6px 10px #1a213509}
 .visual-top {
     padding:8px 18px;
     font-size:8px}

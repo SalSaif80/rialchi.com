@@ -4,3 +4,17 @@
 @import './tracking.css';
 
 @import './beginner.css';
+
+.primary {
+    background: var(--ink);
+    color: var(--paper);
+}
+
+.primary:hover {
+    background: var(--accent);
+}
+
+.cargo-container.is-selected rect,
+.cargo-container.is-available:hover rect {
+    fill: #ca9654;
+}

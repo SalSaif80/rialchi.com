@@ -1,9 +1,9 @@
 :root {
-    --paper: #f2f2e9;
-    --ink: #282b26;
-    --muted: #77796f;
-    --line: #b9bcb0;
-    --orange: #fa400b
+    --paper: #f8f5ee;
+    --ink: #1a2135;
+    --muted: #555d70;
+    --line: #cfc7b8;
+    --accent: #895b22
 }
 
 * {
@@ -58,7 +58,7 @@ button {
 button:focus-visible,
 a:focus-visible,
 summary:focus-visible {
-    outline: 2px solid var(--orange);
+    outline: 2px solid var(--accent);
     outline-offset: 5px
 }
 
@@ -99,7 +99,7 @@ h2 span {
     top: 0;
     right: 0;
     height: 3px;
-    background: var(--orange);
+    background: var(--accent);
     width: 0;
     z-index: 100
 }
@@ -182,7 +182,7 @@ nav small {
 }
 
 .quote-link {
-    color: var(--orange)
+    color: var(--accent)
 }
 
 nav>a:hover,
@@ -199,7 +199,7 @@ nav>button:hover {
     height: clamp(430px, 53vw, 740px);
     position: relative;
     overflow: hidden;
-    background: linear-gradient(90deg, transparent 49.95%, #b9bcb01c 50%, transparent 50.05%)
+    background: linear-gradient(90deg, transparent 49.95%, #cfc7b81c 50%, transparent 50.05%)
 }
 
 .hero-art:before {
@@ -207,7 +207,7 @@ nav>button:hover {
     position: absolute;
     inset: 12px;
     border: 8px solid transparent;
-    border-image: repeating-linear-gradient(90deg, #b9bcb050 0 1px, transparent 1px 7px) 8;
+    border-image: repeating-linear-gradient(90deg, #cfc7b850 0 1px, transparent 1px 7px) 8;
     pointer-events: none
 }
 
@@ -267,7 +267,7 @@ nav>button:hover {
     height: 100%;
     object-fit: contain;
     animation: port-in 1.8s ease both;
-    filter: drop-shadow(0 20px 12px #33333305)
+    filter: drop-shadow(0 20px 12px #1a213505)
 }
 
 .scan {
@@ -275,8 +275,8 @@ nav>button:hover {
     width: 1px;
     top: 12%;
     height: 74%;
-    background: linear-gradient(transparent, #fa400b70, transparent);
-    box-shadow: 0 0 24px #fa400b60;
+    background: linear-gradient(transparent, #895b2270, transparent);
+    box-shadow: 0 0 24px #895b2260;
     animation: scan 10s linear infinite
 }
 
@@ -293,19 +293,19 @@ nav>button:hover {
 .annotation i {
     width: 9px;
     height: 9px;
-    background: var(--orange);
-    box-shadow: 0 0 0 5px #fa400b12;
+    background: var(--accent);
+    box-shadow: 0 0 0 5px #895b2212;
     animation: pulse 3s infinite
 }
 
 .annotation span {
     border-top: 1px solid var(--ink);
     padding: 5px 12px 5px 35px;
-    background: #f2f2e9e0
+    background: #f8f5eee0
 }
 
 .annotation:hover span {
-    background: var(--orange);
+    background: var(--accent);
     color: white
 }
 
@@ -336,7 +336,7 @@ nav>button:hover {
     display: inline-block;
     width: 5px;
     height: 5px;
-    background: var(--orange);
+    background: var(--accent);
     margin-left: 7px
 }
 
@@ -352,7 +352,7 @@ h1 {
 }
 
 h1 span {
-    color: var(--orange)
+    color: var(--accent)
 }
 
 .hero-description {
@@ -376,7 +376,7 @@ h1 span {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    color: var(--orange)
+    color: var(--accent)
 }
 
 .discover span {
@@ -385,7 +385,7 @@ h1 span {
 }
 
 .discover:hover {
-    background: var(--orange);
+    background: var(--accent);
     color: white
 }
 
@@ -406,7 +406,7 @@ h1 span {
 }
 
 .marquee span {
-    color: var(--orange);
+    color: var(--accent);
     font-size: 18px
 }
 
@@ -454,9 +454,9 @@ h1 span {
 }
 
 .arrow-link:hover {
-    background: var(--orange);
+    background: var(--accent);
     color: white;
-    border-color: var(--orange)
+    border-color: var(--accent)
 }
 
 .network>.eyebrow {
@@ -495,7 +495,7 @@ h1 span {
 
 .stat em {
     font-style: normal;
-    color: var(--orange);
+    color: var(--accent);
     font-size: .55em;
     vertical-align: top
 }
@@ -523,7 +523,7 @@ h1 span {
 .service-mark {
     font-size: 170px;
     line-height: 1.3;
-    color: var(--orange);
+    color: var(--accent);
     width: 180px;
     animation: rotate 55s linear infinite;
     text-align: center;
@@ -568,15 +568,15 @@ h1 span {
 
 .service[open] .plus {
     transform: rotate(-45deg);
-    color: var(--orange)
+    color: var(--accent)
 }
 
 .service[open] {
-    background: #e9e9df
+    background: #efe9dc
 }
 
 .service summary:hover h3 {
-    color: var(--orange)
+    color: var(--accent)
 }
 
 .service-detail {
@@ -587,13 +587,13 @@ h1 span {
 
 .text-button {
     margin-top: 18px;
-    color: var(--orange);
+    color: var(--accent);
     padding: 0;
     font-size: 13px
 }
 
 .promise {
-    background: #292c27;
+    background: #1a2135;
     color: var(--paper);
     padding: 75px 32px 0
 }
@@ -603,17 +603,17 @@ h1 span {
 }
 
 .promise h2 span {
-    color: #a3a69a
+    color: #dfc399
 }
 
 .features {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    border-top: 1px solid #686c5e
+    border-top: 1px solid #6b7487
 }
 
 .features article {
-    border-left: 1px solid #686c5e;
+    border-left: 1px solid #6b7487;
     padding: 20px 25px 35px
 }
 
@@ -628,12 +628,12 @@ h1 span {
 .features article>span {
     font-family: monospace;
     font-size: 11px;
-    color: #a3a69a
+    color: #dfc399
 }
 
 .feature-icon {
     font-size: 75px;
-    color: var(--orange);
+    color: var(--accent);
     margin: 15px 0;
     transition: transform .4s
 }
@@ -659,7 +659,7 @@ h1 span {
 }
 
 .primary {
-    background: var(--orange);
+    background: var(--accent);
     color: white;
     padding: 15px 22px;
     display: flex;
@@ -694,7 +694,7 @@ h1 span {
 }
 
 .contact-info a:hover {
-    color: var(--orange)
+    color: var(--accent)
 }
 
 .footer-top {
@@ -759,7 +759,7 @@ dialog {
 }
 
 dialog::backdrop {
-    background: #171b16a8;
+    background: #101729a8;
     backdrop-filter: blur(5px)
 }
 
@@ -780,7 +780,7 @@ dialog h2 {
 }
 
 dialog h2 span {
-    color: var(--orange)
+    color: var(--accent)
 }
 
 dialog p {
@@ -811,7 +811,7 @@ textarea {
 input:focus,
 textarea:focus,
 select:focus {
-    outline: 1px solid var(--orange)
+    outline: 1px solid var(--accent)
 }
 
 .form-row {
@@ -858,7 +858,7 @@ dialog .primary {
 
 @keyframes pulse {
     50% {
-        box-shadow: 0 0 0 9px #fa400b08
+        box-shadow: 0 0 0 9px #895b2208
     }
 }
 
@@ -1197,7 +1197,7 @@ dialog .primary {
 
     .features article {
         padding: 15px !important;
-        border-bottom: 1px solid #686c5e
+        border-bottom: 1px solid #6b7487
     }
 
     .features article:nth-child(2) {
