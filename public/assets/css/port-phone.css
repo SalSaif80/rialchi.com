@@ -1,0 +1,35 @@
+/* Loaded only at the existing phone breakpoint. Both views use the same live SVG. */
+.hero-art {
+    height: auto;
+    padding: 44px 0 54px;
+}
+
+.port-wrap {
+    position: relative;
+    inset: auto;
+    display: block;
+}
+
+/* Frame x=40..850 of the 1200-unit port around the complete ship. */
+.port {
+    position: relative;
+    height: auto;
+    aspect-ratio: 810 / 530;
+    overflow: hidden;
+}
+
+.port > #interactive-port {
+    position: absolute;
+    top: 0;
+    left: calc(-100% * 40 / 810);
+    width: calc(100% * 1200 / 810);
+    height: auto;
+}
+
+.port-dock-detail {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-top: 1px solid var(--line);
+    pointer-events: none;
+}

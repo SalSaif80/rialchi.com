@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
     @php(app(\Illuminate\Foundation\Vite::class)->useHotFile(storage_path('framework/rialchi.hot')))
     @vite(['resources/css/rialchi/app.css', 'resources/js/rialchi/app.js'], 'build/rialchi')
+    @stack('page-styles')
 </head>
 <body data-whatsapp="{{ config('rialchi.whatsapp') }}">
     <div class="progress" aria-hidden="true"></div>

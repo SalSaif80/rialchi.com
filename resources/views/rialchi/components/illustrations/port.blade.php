@@ -1,5 +1,6 @@
 <svg id="interactive-port" viewBox="0 0 1200 570" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.4" role="group" aria-label="ميناء تفاعلي" aria-describedby="port-status">
 <defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M0 6L6 0" stroke="#a9afa0" stroke-width=".5"/></pattern></defs>
+<g id="port-scene">
 <path d="M40 485H775m-700 12h330m40 0h300m-580 13h470" stroke="#aab3a0"/>
 <path d="M825 425H1200V540H825Z" fill="#d7dccd"/><path d="M825 445H1200M840 445v95m45-95v95m45-95v95m45-95v95m45-95v95m45-95v95m45-95v95m45-95v95" stroke="#a0a993"/>
 <path d="M850 405H1200" stroke="#fa400b" stroke-dasharray="12 8"/>
@@ -7,6 +8,7 @@
 <path d="M685 388V260H754V388M675 260V239H766V260ZM708 239V205H735V239M721 205V180" fill="url(#hatch)"/>
 <path d="M687 247h65" stroke-width="7"/><path d="M80 412h22m-11 0v18m-10-8q10 15 20 0"/>
 <image href="{{ asset('assets/images/brand/logo-rialchi.png') }}" x="365" y="405" width="140" height="40" preserveAspectRatio="xMidYMid meet" />
+</g>
 <g class="gantry-frame"><path d="M110 400V65H1130V425M126 388V81H1114V425" fill="none" stroke-width="3"/><path d="M110 65 126 100 110 135 126 170 110 205 126 240 110 275 126 310 110 345 126 380M1114 90 1130 125 1114 160 1130 195 1114 230 1130 265 1114 300 1130 335 1114 370 1130 405"/><path d="M130 65 190 81 250 65 310 81 370 65 430 81 490 65 550 81 610 65 670 81 730 65 790 81 850 65 910 81 970 65 1030 81 1090 65" stroke="#a0a993"/></g>
 <g id="container-yard">
 <g class="cargo-container" data-col="0" data-row="0" data-x="165" data-y="335" role="button" tabindex="0" aria-label="حاوية 1، مستوى 1"><rect x="165" y="335" width="78" height="47" rx="1" fill="#e9ece2"/><path d="M173 340v37" opacity=".6"/><path d="M183 340v37" opacity=".6"/><path d="M193 340v37" opacity=".6"/><path d="M203 340v37" opacity=".6"/><path d="M213 340v37" opacity=".6"/><path d="M223 340v37" opacity=".6"/><path d="M233 340v37" opacity=".6"/></g>
@@ -31,4 +33,5 @@
 <g id="port-truck" transform="translate(1250 0)"><path d="M0 419H88V428H0ZM88 390H115L135 408V428H88Z" fill="#f2f2e9"/><path d="M97 396H112L125 408H97Z" fill="#8b9982"/><path d="M91 413h8"/><g fill="#333d2e"><circle cx="15" cy="432" r="9"/><circle cx="69" cy="432" r="9"/><circle cx="116" cy="432" r="9"/></g><g fill="#e7ebdf"><circle cx="15" cy="432" r="3"/><circle cx="69" cy="432" r="3"/><circle cx="116" cy="432" r="3"/></g><path d="M129 415h6" stroke="#fa400b" stroke-width="3"/></g>
 <g id="port-workers" transform="translate(1040 395)"><g class="worker"><circle cx="0" cy="0" r="4" fill="#f2f2e9"/><path d="M-5-2Q0-9 5-2" stroke="#fa400b" stroke-width="3"/><path d="M0 5v14M0 19l-5 13m5-13 5 13" stroke-width="3"/><g transform="translate(0 7)"><path class="signal-arm arm-left" d="M0 0-6-5-8-11" stroke-width="3" stroke-linecap="round"/><path class="signal-arm arm-right" d="M0 0 6-5 8-11" stroke-width="3" stroke-linecap="round"/></g><path d="M-4 5h8v12h-8Z" fill="#fa400b"/></g><g class="worker" transform="translate(35 0)"><circle r="4" fill="#f2f2e9"/><path d="M-5-2Q0-9 5-2" stroke="#fa400b" stroke-width="3"/><path d="M0 5v14M0 19l-5 13m5-13 5 13" stroke-width="3"/><g transform="translate(0 7)"><path class="signal-arm arm-left" d="M0 0-6-5-8-11" stroke-width="3" stroke-linecap="round"/><path class="signal-arm arm-right" d="M0 0 6-5 8-11" stroke-width="3" stroke-linecap="round"/></g><path d="M-4 5h8v12h-8Z" fill="#fa400b"/></g></g>
 <g id="port-hoist"><path id="hoist-cable" d="M900 90V150" stroke-width="2"/><g id="hoist-trolley" transform="translate(900 0)"><rect x="-17" y="76" width="34" height="16" fill="#fa400b"/><circle cx="-10" cy="77" r="4" fill="#30382c"/><circle cx="10" cy="77" r="4" fill="#30382c"/></g><path id="hoist-spreader" d="M-36 0H36M-36 0V8M36 0V8" transform="translate(900 150)" stroke-width="3"/></g>
+</g>
 </svg>

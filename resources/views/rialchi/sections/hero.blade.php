@@ -10,6 +10,11 @@
 </div>
 <div class="port-wrap">
 <div class="port">@include('rialchi.components.illustrations.port')</div>
+<svg class="port-dock-detail" display="none" viewBox="810 292 390 180"
+     fill="none" stroke="currentColor" stroke-width="1.4"
+     aria-hidden="true" focusable="false" inert>
+    <use href="#port-scene" />
+</svg>
 <div class="hero-plane" aria-hidden="true">@include('rialchi.components.illustrations.plane')</div>
 <div class="scan" aria-hidden="true">
 </div>
