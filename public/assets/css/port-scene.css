@@ -17,7 +17,7 @@
 @media (max-width: 580px) {
     .hero-art {
         height: auto;
-        padding: 46px 0 54px;
+        padding: 12px 0;
     }
 
     .port-wrap {
