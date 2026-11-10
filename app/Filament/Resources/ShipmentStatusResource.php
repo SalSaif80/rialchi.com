@@ -14,6 +14,8 @@ class ShipmentStatusResource extends Resource
 {
     protected static ?string $model = ShipmentStatus::class;
 
+    protected static string|\UnitEnum|null $navigationGroup = 'الشحن والتتبع';
+
     protected static ?string $modelLabel = 'حالة';
 
     protected static ?string $pluralModelLabel = 'حالات الشحن';
@@ -33,6 +35,6 @@ class ShipmentStatusResource extends Resource
     public static function table(Table $table): Table
     {
         return $table->columns([TextColumn::make('name')->label('الحالة')->searchable()])
-            ->recordActions([EditAction::make()]);
+            ->recordActions([EditAction::make(), \Filament\Actions\DeleteAction::make()]);
     }
 }

@@ -25,7 +25,6 @@ cd "$live"
 rm -f -- bootstrap/cache/{packages,services,config}.php
 php artisan package:discover
 php artisan migrate --force
-php artisan db:seed --class=ShippingSeeder --force
 php artisan filament:assets
 php artisan config:cache
 php artisan route:cache

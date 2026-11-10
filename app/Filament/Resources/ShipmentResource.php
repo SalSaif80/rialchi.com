@@ -20,6 +20,8 @@ class ShipmentResource extends Resource
 {
     protected static ?string $model = Shipment::class;
 
+    protected static string|\UnitEnum|null $navigationGroup = 'الشحن والتتبع';
+
     protected static ?string $modelLabel = 'شحنة';
 
     protected static ?string $pluralModelLabel = 'الشحنات';
@@ -42,7 +44,7 @@ class ShipmentResource extends Resource
             Select::make('method')->label('طريقة الشحن')->options(['بحري' => 'بحري', 'جوي' => 'جوي', 'بري' => 'بري']),
             TextInput::make('weight')->label('الوزن مع الوحدة')->placeholder('25 كجم')->maxLength(50),
             Textarea::make('details')->label('تفاصيل تظهر للعميل')->maxLength(2000),
-            FileUpload::make('photos')->label('صور تظهر للعميل')->image()
+            FileUpload::make('photos')->label('صور المنتج الداخلية')->image()
                 ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])->disk('local')->visibility('private')
                 ->directory('shipment-photos')->multiple()->maxFiles(6)->maxSize(4096)->preventFilePathTampering(),
         ]);
@@ -56,6 +58,11 @@ class ShipmentResource extends Resource
             TextColumn::make('latestEvent.status.name')->label('الحالة الحالية')->badge(),
             TextColumn::make('destination')->label('الوجهة'),
         ])->recordActions([
+            Action::make('photos')->label('عرض صور المنتج')
+                ->visible(fn (Shipment $record) => filled($record->photos))
+                ->modalHeading(fn (Shipment $record) => 'صور المنتج · '.$record->number)
+                ->modalContent(fn (Shipment $record) => view('rialchi.partials.shipment-photos', ['shipment' => $record]))
+                ->modalSubmitAction(false)->modalCancelActionLabel('إغلاق'),
             EditAction::make(),
             Action::make('updateStatus')->label('تحديث الحالة')
                 ->schema([

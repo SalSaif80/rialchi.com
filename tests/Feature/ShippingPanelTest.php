@@ -46,7 +46,20 @@ class ShippingPanelTest extends TestCase
             'shipment_status_id' => ShipmentStatus::max('id'), 'location' => 'بريدة',
         ])->assertHasNoFormErrors();
         $this->assertCount(2, $shipment->events);
+        $photo = 'shipment-photos/test.jpg';
+        \Illuminate\Support\Facades\Storage::fake('local')->put($photo, 'test image');
+        $shipment->update(['photos' => [$photo], 'details' => 'وصف خاص بالشحنة']);
+        $photoUrl = route('rialchi.shipment-photo', [$shipment->number, 0]);
+        $this->get($photoUrl)->assertOk();
+        $this->assertFalse($owner->can('delete', $status));
+        $unused = ShipmentStatus::create(['name' => 'حالة غير مستخدمة']);
+        $this->assertTrue($owner->can('delete', $unused));
+
         auth()->logout();
+        $this->get($photoUrl)->assertForbidden();
+        $this->get('/tracking/'.$shipment->number.'/photos/0')->assertNotFound();
+        $this->get($shipment->trackingUrl())->assertDontSee($photoUrl)->assertSee('وصف خاص بالشحنة')
+            ->assertSeeInOrder(['تم تسجيل الشحنة وإصدار رقم التتبع', $status->name, 'بريدة']);
         $this->get($shipment->trackingUrl())->assertOk()->assertSee('بريدة')->assertSee('القصيم')->assertDontSee('+966551998021');
         $this->get('/tracking?number=unknown')->assertOk()->assertSee('لم نجد شحنة');
     }
