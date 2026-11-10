@@ -1,6 +1,6 @@
 {
   "resources/css/rialchi/app.css": {
-    "file": "assets/app-defc093355.css",
+    "file": "assets/app-baa006b36a.css",
     "name": "app",
     "names": [
       "app.css"
@@ -9,7 +9,7 @@
     "isEntry": true
   },
   "resources/js/rialchi/app.js": {
-    "file": "assets/app-Uo5NJLQV.js",
+    "file": "assets/app-1fc1994435.js",
     "name": "app",
     "src": "resources/js/rialchi/app.js",
     "isEntry": true

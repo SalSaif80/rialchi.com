@@ -9,13 +9,12 @@
     <!-- 1. واجهة البحث -->
     <div id="search-view" class="tracking-view">
       <div class="tracking-hero">
-        <span class="tracking-kicker">RLC / نظام التتبع</span>
         <h1>أين شحنتك الآن؟</h1>
-        <p>أدخل رقم البوليصة (Bill of Lading) لمعرفة تفاصيل الرحلة.</p>
+        <p>أدخل رقم البوليصة لعرض مسار الشحنة.</p>
         
         <form id="tracking-form" class="search-form">
           <div class="input-group">
-            <input type="text" id="tracking-input" dir="ltr" placeholder="مثال: RLC-98231-SA" required autocomplete="off">
+            <input type="text" id="tracking-input" dir="ltr" maxlength="80" aria-label="رقم البوليصة" placeholder="RLC-98231-SA" required autocomplete="off">
             <button type="submit" class="primary" id="submit-btn">تتبع الشحنة</button>
           </div>
           <p class="field-help">ما عندك رقم؟ <a data-wa="السلام عليكم، أريد المساعدة في معرفة رقم شحنتي." href="https://wa.me/{{ config('rialchi.whatsapp') }}">تواصل معنا عبر واتساب</a></p>
@@ -23,48 +22,19 @@
       </div>
     </div>
 
-    <!-- 2. واجهة التحميل (تحاكي جلب البيانات) -->
-    <div id="loading-view" class="tracking-view" hidden>
-      <div class="loading-box">
-        <div class="loading-bar"></div>
-        <p class="mono">CONNECTING TO SERVER...</p>
-        <h3>جاري جلب بيانات الشحنة...</h3>
-      </div>
-    </div>
-
-    <!-- 3. واجهة النتائج -->
+    <!-- مسار الشحنة -->
     <div id="results-view" class="tracking-view" hidden>
       
       <div class="results-header">
         <button type="button" id="back-to-search" class="back-btn">← بحث جديد</button>
-        <div class="status-badge">الحالة: قيد النقل</div>
-      </div>
-
-      <!-- بيانات الشحنة -->
-      <div class="shipment-grid">
-        <div class="shipment-cell">
-          <span class="cell-label">رقم البوليصة</span>
-          <strong class="cell-value mono" id="res-tracking-num">-</strong>
-        </div>
-        <div class="shipment-cell">
-          <span class="cell-label">طريقة الشحن</span>
-          <strong class="cell-value">شحن جوي</strong>
-        </div>
-        <div class="shipment-cell">
-          <span class="cell-label">الوزن</span>
-          <strong class="cell-value">450 كجم</strong>
-        </div>
-        <div class="shipment-cell">
-          <span class="cell-label">الوجهة</span>
-          <strong class="cell-value">الرياض، السعودية</strong>
-        </div>
+        <div class="status-badge">مثال توضيحي · قيد النقل</div>
       </div>
 
       <!-- الخط الزمني -->
       <div class="timeline-box">
         <div class="timeline-header">
-          <h3>مسار الرحلة</h3>
-          <span class="mono">TRACKING ID: <span id="res-tracking-num-2">-</span></span>
+          <h2 id="route-title" tabindex="-1">مسار الرحلة</h2>
+          <span class="mono">بوليصة <bdi id="res-tracking-num">-</bdi></span>
         </div>
         
         <ul class="timeline">
@@ -84,7 +54,7 @@
               <span class="t-date mono">29 أكتوبر - 08:30 م</span>
             </div>
           </li>
-          <li class="timeline-item active">
+          <li class="timeline-item active" aria-current="step">
             <div class="t-marker pulse"></div>
             <div class="t-content">
               <h4>في الطريق إلى الوجهة</h4>
@@ -108,6 +78,16 @@
           </li>
         </ul>
       </div>
+      <details class="shipment-details">
+        <summary>تفاصيل الشحنة</summary>
+        <dl>
+          <div><dt>طريقة الشحن</dt><dd>شحن جوي</dd></div>
+          <div><dt>الوزن</dt><dd>450 كجم</dd></div>
+          <div><dt>الوجهة</dt><dd>الرياض، السعودية</dd></div>
+        </dl>
+      </details>
+      <p class="field-help">المسار المعروض توضيحي. <a class="tracking-wa-btn" href="https://wa.me/{{ config('rialchi.whatsapp') }}">استفسر عن شحنتك عبر واتساب</a></p>
+
       
     </div>
   </div>
