@@ -1,0 +1,83 @@
+name: Rialchi CI and deployment
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, pdo_sqlite
+          tools: composer:v2
+          coverage: none
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: composer install --prefer-dist --no-interaction --no-progress
+      - run: npm ci
+      - run: npm run build && npm run build:rialchi
+      - name: Run Laravel tests
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+          php artisan test
+      - name: Package application and tested assets
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        run: |
+          mkdir "$RUNNER_TEMP/release"
+          git archive HEAD app artisan bootstrap composer.json composer.lock config database public resources routes | tar -x -C "$RUNNER_TEMP/release"
+          rm -rf "$RUNNER_TEMP/release/public/build"
+          cp -a public/build "$RUNNER_TEMP/release/public/"
+          tar -czf "$RUNNER_TEMP/release.tgz" -C "$RUNNER_TEMP/release" .
+      - uses: actions/upload-artifact@v4
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        with:
+          name: rialchi-release
+          path: ${{ runner.temp }}/release.tgz
+          retention-days: 3
+
+  deploy:
+    needs: verify
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    concurrency:
+      group: rialchi-production
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: rialchi-release
+          path: ${{ runner.temp }}
+      - name: Deploy verified release
+        env:
+          SSHPASS: ${{ secrets.DEPLOY_PASSWORD }}
+          KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+          DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
+        run: |
+          set -euo pipefail
+          : "${SSHPASS:?Set DEPLOY_PASSWORD}" "${KNOWN_HOSTS:?Set DEPLOY_KNOWN_HOSTS}"
+          [[ "$DEPLOY_PATH" =~ ^/[a-zA-Z0-9_./-]+$ ]] || { echo 'Set DEPLOY_PATH to the absolute Laravel directory'; exit 1; }
+          sudo apt-get update -qq
+          sudo apt-get install -y sshpass
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          host=u453901569@141.136.33.160
+          opts=(-o StrictHostKeyChecking=yes -o PubkeyAuthentication=no -o ConnectTimeout=15)
+          remote=$(sshpass -e ssh "${opts[@]}" -p 65002 "$host" 'mktemp -d /tmp/rialchi.XXXXXXXX')
+          [[ "$remote" =~ ^/tmp/rialchi\.[a-zA-Z0-9]+$ ]]
+          trap 'sshpass -e ssh "${opts[@]}" -p 65002 "$host" "rm -rf -- $remote"' EXIT
+          sshpass -e scp "${opts[@]}" -P 65002 "$RUNNER_TEMP/release.tgz" "$host:$remote/"
+          sshpass -e ssh "${opts[@]}" -p 65002 "$host" "bash -s -- '$DEPLOY_PATH' '$remote'" < .github/scripts/deploy.sh
