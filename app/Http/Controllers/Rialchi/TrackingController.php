@@ -14,8 +14,8 @@ final class TrackingController extends Controller
         $searched = array_key_exists('number', $query);
         $number = is_string($query['number'] ?? null) ? trim($query['number']) : '';
         $valid = $number !== '' && mb_strlen($number) <= 80;
-        $shipments = config('rialchi_tracking', []);
-        $shipment = $searched && $valid ? ($shipments[strtoupper($number)] ?? null) : null;
+        $shipments = config('rialchi_tracking.shipments', []);
+        $shipment = $searched && $valid ? ($shipments[strtoupper($number)] ?? config('rialchi_tracking.example')) : null;
 
         return view('rialchi.pages.tracking', compact('number', 'searched', 'valid', 'shipment'));
     }

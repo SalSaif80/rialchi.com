@@ -8,7 +8,7 @@
         @if (!$shipment)
             <div class="tracking-hero">
                 <h1>أين شحنتك الآن؟</h1>
-                <p>أدخل رقم البوليصة لعرض مسار الشحنة.</p>
+                <p>أدخل أي رقم بوليصة لتجربة عرض مسار الشحنة.</p>
                 <form id="tracking-form" class="search-form" method="get" action="{{ route('rialchi.tracking') }}">
                     <div class="input-group">
                         <input type="text" id="tracking-input" name="number" dir="ltr" value="{{ $valid ? $number : '' }}"
@@ -17,9 +17,8 @@
                     </div>
                     <p id="search-progress" class="field-help" role="status" hidden>جارٍ البحث عن الشحنة…</p>
                     @if ($searched)
-                        <p class="field-help" role="status">{{ $valid ? 'لم نجد شحنة بهذا الرقم. تأكد من رقم البوليصة وأعد البحث.' : 'أدخل رقم بوليصة من 1 إلى 80 حرفًا.' }}</p>
+                        <p class="field-help" role="status">أدخل رقم بوليصة من 1 إلى 80 حرفًا.</p>
                     @endif
-                    <p class="field-help"><a href="{{ route('rialchi.tracking', ['number' => 'RLC-98231-SA']) }}">جرّب رقم التتبع التوضيحي</a></p>
                 </form>
             </div>
         @else
