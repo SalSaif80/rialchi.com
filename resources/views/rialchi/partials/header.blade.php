@@ -13,6 +13,8 @@
         <a href="{{ route('rialchi.home') }}#journey">كيف أبدأ؟ <small>⌟</small></a>
         <a href="{{ route('rialchi.tracking') }}" @if(request()->routeIs('rialchi.tracking')) aria-current="page" @endif>تتبع شحنتك <small>@include('rialchi.components.icons.arrow-up-right')</small></a>
         <a href="{{ route('rialchi.home') }}#network">قبل أن تدفع <small>⌟</small></a>
-        <a class="quote-link" data-wa="السلام عليكم فريق ريالتشي، لدي استفسار عن الاستيراد." href="https://wa.me/{{ config('rialchi.whatsapp') }}">تواصل واتساب <small>@include('rialchi.components.icons.arrow-down-left')</small></a>
+        @unless(request()->routeIs('rialchi.tracking'))
+            <a class="quote-link" data-wa="السلام عليكم فريق ريالتشي، لدي استفسار عن الاستيراد." href="https://wa.me/{{ config('rialchi.whatsapp') }}">تواصل واتساب <small>@include('rialchi.components.icons.arrow-down-left')</small></a>
+        @endunless
     </nav>
 </header>

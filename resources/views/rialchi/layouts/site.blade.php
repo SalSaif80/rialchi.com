@@ -23,6 +23,8 @@
         @include('rialchi.partials.footer')
     </div>
     @include('rialchi.components.quote-dialog')
-    <a class="floating-wa" data-wa="السلام عليكم فريق ريالتشي، لدي استفسار عن الاستيراد." href="https://wa.me/{{ config('rialchi.whatsapp') }}" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">◉</span> تواصل واتساب @include('rialchi.components.icons.arrow-up-right')</a>
+    @unless(request()->routeIs('rialchi.tracking'))
+        <a class="floating-wa" data-wa="السلام عليكم فريق ريالتشي، لدي استفسار عن الاستيراد." href="https://wa.me/{{ config('rialchi.whatsapp') }}" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">◉</span> تواصل واتساب @include('rialchi.components.icons.arrow-up-right')</a>
+    @endunless
 </body>
 </html>
