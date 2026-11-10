@@ -6,8 +6,6 @@ export function initPort() {
     const scene = document.querySelector('#interactive-port');
     if (!scene) return;
     const status = document.querySelector('#port-status');
-    const next = document.querySelector('#unload-button');
-    const reset = document.querySelector('#port-reset');
     const truck = scene.querySelector('#port-truck');
     const trolley = scene.querySelector('#hoist-trolley');
     const cable = scene.querySelector('#hoist-cable');
@@ -27,8 +25,6 @@ export function initPort() {
             c.el.setAttribute('aria-disabled', String(!available || busy));
             c.el.setAttribute('aria-label', `حاوية ${c.col+1}، مستوى ${c.row+1}، ${available ? 'متاحة للتفريغ' : 'أزل الحاوية التي فوقها أولًا'}`);
         });
-        next.disabled = busy || containers.every(c=>c.removed);
-        reset.disabled = busy;
     };
     // A single clock keeps cable, trolley, spreader and cargo physically connected.
     const tween = (duration, paint) => new Promise(resolve => {
@@ -90,23 +86,18 @@ export function initPort() {
         status.textContent='ثبّت العمال الحاوية على الشاحنة. الشاحنة تغادر الميناء.';
         scene.classList.remove('workers-guiding','workers-loading');
         await moveTruck(1250,1500,cargo);
+        const hadFocus = document.activeElement === cargo.el;
         cargo.removed=true; cargo.el.style.display='none'; cargo.el.classList.remove('is-selected');
         scene.classList.remove('is-working','workers-loading','workers-guiding');
         busy=false; refresh();
+        if (hadFocus) (containers.find(item => isAccessible(item, containers))?.el ?? document.querySelector('.start-copy .primary')).focus();
         const remaining=containers.filter(c=>!c.removed).length;
-        status.textContent=remaining ? `غادرت الشاحنة. بقيت ${remaining} حاوية؛ اختر التالية من أعلى الرصّة.` : 'اكتمل تفريغ السفينة! اضغط إعادة الميناء لتبدأ من جديد.';
-        if(document.activeElement===cargo.el) (next.disabled ? reset : next).focus();
+        status.textContent=remaining ? `غادرت الشاحنة. بقيت ${remaining} حاوية؛ اختر التالية من أعلى الرصّة.` : 'اكتمل تفريغ السفينة.';
+
     };
     containers.forEach(c=> {
         c.el.addEventListener('click',()=>unload(c));
         c.el.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();unload(c);} });
-    });
-    next.addEventListener('click',()=>{const c=containers.find(c=>isAccessible(c,containers));if(c)unload(c);});
-    reset.addEventListener('click',()=> {
-        if(busy)return;
-        containers.forEach(c=>{c.removed=false;c.el.style.display='';c.el.removeAttribute('transform');});
-        hoistX=900;hoistY=150;truckX=1250;drawHoist();truck.setAttribute('transform','translate(1250 0)');
-        refresh();status.textContent='اختر أي حاوية من أعلى الرصّة ليحملها الونش.';
     });
     refresh();
 }

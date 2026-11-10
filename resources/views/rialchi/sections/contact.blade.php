@@ -1,5 +1,5 @@
 <section id="contact" class="contact section-pad">
-<div class="eyebrow">[خطوتك الأولى]</div>
+
 <div>
 <h2 class="reveal">أرسل الصورة.<br>واسأل عن <span>التفاصيل.</span>
 </h2>

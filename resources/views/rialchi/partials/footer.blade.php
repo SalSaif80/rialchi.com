@@ -1,17 +1,19 @@
-<footer>
-<div class="footer-top">
-<a href="{{ route('rialchi.home') }}#home" class="brand">◈ RIALCHI</a>
-<p>شركة Rialchi International Trade Co., Ltd.<br>شحنتك، أولويتنا.</p>
-<div>
-<a href="{{ route('rialchi.home') }}#services">خدماتنا</a>
-<a href="{{ route('rialchi.home') }}#about">من نحن</a>
-<a href="{{ route('rialchi.tracking') }}">تتبع شحنتك</a>
-</div>
-<a href="{{ route('rialchi.home') }}#home">العودة للأعلى @include('rialchi.components.icons.arrow-up')</a>
-</div>
-<div class="footer-word" aria-hidden="true">RIALCHI</div>
-<div class="footer-bottom">
-<span>© {{ date('Y') }} Rialchi International Trade Co., Ltd. جميع الحقوق محفوظة.</span>
-<span dir="ltr">GLOBAL TRADE. HUMAN CONNECTION.</span>
-</div>
+<footer class="site-footer">
+    <div class="footer-columns">
+        <a class="footer-logo" href="{{ route('rialchi.home') }}">
+            <img src="{{ asset('assets/images/brand/logo-rialchi.png') }}" alt="ريالتشي للاستيراد والشحن" loading="lazy">
+        </a>
+        <div>
+            <h2>خدمات ريالتشي</h2>
+            <a href="{{ route('rialchi.home') }}#journey">كيف أبدأ الاستيراد؟</a>
+            <a href="{{ route('rialchi.home') }}#services">خدمات الشحن والتخليص</a>
+            <a href="{{ route('rialchi.tracking') }}">تتبّع شحنتك</a>
+        </div>
+        <div>
+            <h2>تواصل معنا</h2>
+            <a href="tel:+{{ config('rialchi.whatsapp') }}"><bdi dir="ltr">+{{ config('rialchi.whatsapp') }}</bdi></a>
+            <a href="mailto:{{ config('rialchi.email') }}">{{ config('rialchi.email') }}</a>
+        </div>
+    </div>
+    <small>© {{ date('Y') }} ريالتشي للاستيراد والشحن</small>
 </footer>

@@ -202,15 +202,6 @@ nav>button:hover {
     background: linear-gradient(90deg, transparent 49.95%, #cfc7b81c 50%, transparent 50.05%)
 }
 
-.hero-art:before {
-    content: '';
-    position: absolute;
-    inset: 12px;
-    border: 8px solid transparent;
-    border-image: repeating-linear-gradient(90deg, #cfc7b850 0 1px, transparent 1px 7px) 8;
-    pointer-events: none
-}
-
 .cross {
     position: absolute;
     font-family: monospace;
