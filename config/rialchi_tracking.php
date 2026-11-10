@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'RLC-98231-SA' => [
+    'shipments' => [],
+    'example' => [
         'demo' => true,
         'status' => 'قيد النقل',
         'method' => 'شحن جوي',

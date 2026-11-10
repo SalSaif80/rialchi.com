@@ -6,22 +6,29 @@ export function initTracking() {
     const submit = form.querySelector('#submit-btn');
     const progress = form.querySelector('#search-progress');
 
+    let pending;
+
     input.addEventListener('input', () => input.setCustomValidity(''));
     form.addEventListener('submit', event => {
+        event.preventDefault();
+        if (submit.disabled) return;
         input.value = input.value.trim();
         if (!input.value) {
-            event.preventDefault();
             input.setCustomValidity('أدخل رقم البوليصة.');
             input.reportValidity();
             return;
         }
 
+        input.readOnly = true;
         submit.disabled = true;
         form.setAttribute('aria-busy', 'true');
         progress.hidden = false;
+        pending = window.setTimeout(() => form.submit(), 2500);
     });
 
+    window.addEventListener('pagehide', () => window.clearTimeout(pending));
     window.addEventListener('pageshow', () => {
+        input.readOnly = false;
         submit.disabled = false;
         form.removeAttribute('aria-busy');
         progress.hidden = true;
