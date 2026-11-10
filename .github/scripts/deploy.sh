@@ -21,6 +21,8 @@ rsync -a --exclude='*.sqlite*' database/ "$live/database/"
 rsync -a public/ "$live/public/"
 rsync -a artisan composer.json composer.lock "$live/"
 cd "$live"
+# Artisan boots with cached providers before it can rediscover installed packages.
+rm -f -- bootstrap/cache/{packages,services,config}.php
 php artisan package:discover
 php artisan config:cache
 php artisan route:cache
