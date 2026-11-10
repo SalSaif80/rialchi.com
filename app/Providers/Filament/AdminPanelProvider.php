@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\PhoneLogin;
+use App\Filament\Widgets\ShippingOverview;
 use App\Http\Middleware\AdminLocale;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -25,6 +26,7 @@ class AdminPanelProvider extends PanelProvider
         return $panel->default()->id('admin')->path('admin')->login(PhoneLogin::class)
             ->brandName('إدارة ريالتشي')->brandLogo(asset('assets/images/brand/logo-rialchi.png'))
             ->colors(['primary' => '#895b22'])->pages([Dashboard::class])
+            ->widgets([ShippingOverview::class])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->databaseTransactions()
             ->middleware([EncryptCookies::class, AddQueuedCookiesToResponse::class, StartSession::class,
