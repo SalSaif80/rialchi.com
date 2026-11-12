@@ -17,11 +17,11 @@ class ManageShipments extends ManageRecords
 
     protected function getHeaderActions(): array
     {
-        return [CreateAction::make()->label('إضافة شحنة')->using(function (array $data) {
+        return [CreateAction::make()->label(__('إضافة شحنة'))->using(function (array $data) {
             $phone = Phone::normalize($data['phone'], $data['country']);
             if (! $phone) {
                 throw ValidationException::withMessages([
-                    'mountedActions.0.data.phone' => 'تحقق من رقم الجوال ومفتاح الدولة.',
+                    'mountedActions.0.data.phone' => __('تحقق من رقم الجوال ومفتاح الدولة.'),
                 ]);
             }
 

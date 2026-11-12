@@ -12,6 +12,6 @@ class ManageShipmentStatuses extends ManageRecords
 
     protected function getHeaderActions(): array
     {
-        return [CreateAction::make()->label('إضافة حالة')];
+        return [CreateAction::make()->label(__('إضافة حالة'))];
     }
 }

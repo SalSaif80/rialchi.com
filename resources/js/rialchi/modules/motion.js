@@ -1,3 +1,4 @@
+import { t } from './i18n.js';
 export function initMotion() {
     const preference = matchMedia('(prefers-reduced-motion: reduce)');
     const elements = document.querySelectorAll('.reveal');
@@ -16,12 +17,12 @@ export function initMotion() {
     control?.addEventListener('click', () => {
         const paused = document.body.classList.toggle('paused');
         control.setAttribute('aria-pressed', String(paused));
-        control.textContent = paused ? 'تشغيل الحركة' : 'إيقاف الحركة';
+        control.textContent = paused ? t('تشغيل الحركة') : t('إيقاف الحركة');
     });
     const applyPreference = () => {
         if (control) {
             control.disabled = preference.matches;
-            control.textContent = preference.matches ? 'الحركة مخفّضة' : (document.body.classList.contains('paused') ? 'تشغيل الحركة' : 'إيقاف الحركة');
+            control.textContent = preference.matches ? t('الحركة مخفّضة') : (document.body.classList.contains('paused') ? t('تشغيل الحركة') : t('إيقاف الحركة'));
         }
         if (preference.matches) elements.forEach((element) => element.classList.add('visible'));
     };

@@ -25,7 +25,7 @@ final class Phone
         $util = PhoneNumberUtil::getInstance();
         $options = [];
         foreach ($util->getSupportedRegions() as $region) {
-            $options[$region] = \Locale::getDisplayRegion('-'.$region, 'ar').' (+'.$util->getCountryCodeForRegion($region).')';
+            $options[$region] = \Locale::getDisplayRegion('-'.$region, app()->getLocale()).' (+'.$util->getCountryCodeForRegion($region).')';
         }
         asort($options);
 

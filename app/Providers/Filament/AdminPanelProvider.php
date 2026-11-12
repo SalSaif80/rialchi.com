@@ -24,8 +24,10 @@ class AdminPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel->default()->id('admin')->path('admin')->login(PhoneLogin::class)
-            ->brandName('إدارة ريالتشي')->brandLogo(asset('assets/images/brand/logo-rialchi.png'))
-            ->colors(['primary' => '#895b22'])->pages([Dashboard::class])
+            ->brandName(fn () => __('إدارة ريالتشي'))->brandLogo(asset('assets/images/brand/logo-rialchi.png'))
+            ->renderHook('panels::topbar.end', fn () => view('rialchi.partials.language-switcher'))
+            ->renderHook('panels::auth.login.form.before', fn () => view('rialchi.partials.language-switcher'))
+            ->colors(['primary' => '#96703b'])->pages([Dashboard::class])
             ->widgets([ShippingOverview::class])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->databaseTransactions()

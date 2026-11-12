@@ -15,6 +15,7 @@ class TrackingCacheTest extends TestCase
 
     public function test_tracking_ignores_legacy_cached_models_and_shows_live_updates(): void
     {
+        app()->setLocale('ar');
         config(['cache.default' => 'database', 'cache.serializable_classes' => false]);
         $customer = Customer::create(['phone' => '+966551234567']);
         $shipment = Shipment::create(['customer_id' => $customer->id]);

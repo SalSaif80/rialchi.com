@@ -1,0 +1,64 @@
+/* Navy and warm gold sampled from the Rialchi mark. */
+:root {
+    --paper: #f8f9fc;
+    --ink: #1b2236;
+    --muted: #566074;
+    --line: #d8dce5;
+    --accent: #8a6028;
+    --gold: #d7a35d;
+}
+body:before { opacity: .018; }
+header { background: #fff; border-top: 3px solid var(--gold); }
+header .language-switcher { margin-inline: 10px; }
+nav > a { text-align: start; border-right: 0; border-inline-start: 1px solid var(--line); }
+.start-copy h1 span, .simple-section h2 span { color: var(--accent); }
+.start-hero, .entry-options a { background: #fff; }
+.entry-options a > svg:first-child { background: #f5ecde; }
+.primary { background: var(--ink); color: #fff; }
+.primary:hover { background: #303b56; }
+.primary:focus-visible { outline: 3px solid var(--gold); }
+.trust-simple { background: var(--ink); color: #fff; }
+.trust-simple h2 span { color: #e6b774; }
+.trust-simple .section-lead, .trust-grid p { color: #d9dfeb; }
+.trust-grid article { border-color: #596176; }
+.trust-grid article > span, .trust-simple > .text-button { color: #e6b774; }
+.contact { background: #edf0f6; color: var(--ink); }
+.contact h2 span { color: var(--accent); }
+.site-footer { background: #fff; border-top: 3px solid var(--gold); }
+.port-controls { background: #e9edf4; }
+.simple-step + .simple-step { border-right: 0; border-inline-start: 1px solid var(--line); }
+.timeline-item { padding-right: 0; padding-inline-start: 40px; }
+.timeline-item::before { right: auto; inset-inline-start: 9px; }
+.t-marker { right: auto; inset-inline-start: 0; }
+.timeline-header .mono { direction: inherit; }
+.input-group input::placeholder { direction: ltr; text-align: start; }
+html[dir="ltr"] body { font-family: Inter, Arial, "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif; }
+html[lang="zh-Hans"] h1, html[lang="zh-Hans"] h2, html[lang="zh-Hans"] h3 { letter-spacing: 0; }
+html[dir="ltr"] .start-copy h1 { font-size: clamp(34px, 4.3vw, 64px); line-height: 1.2; }
+html[dir="ltr"] .ui-arrow { transform: scaleX(-1); }
+html[dir="ltr"] .new-search svg { transform: none; }
+html[dir="ltr"] .primary { white-space: normal; }
+.port, .port-wrap { direction: ltr; }
+@media (min-width: 581px) {
+    header nav { flex: 1; max-width: 65%; }
+    header .brand { padding-inline: 16px; }
+}
+@media (max-width: 800px) {
+    .simple-step + .simple-step { border-inline-start: 0; }
+}
+@media (max-width: 580px) {
+    header { padding-inline: 10px; gap: 6px; }
+    header .brand img { height: 60px; max-width: 90px; }
+    header .language-switcher { margin-inline: 0; }
+    .menu-toggle { padding-inline: 9px; gap: 6px; font-size: 14px; }
+    #nav .quote-link { background: #f5ecde; color: var(--accent); }
+    .timeline-item { padding-inline-start: 32px; }
+    .input-group button.primary { padding-inline: 12px; font-size: 13px; }
+    html[dir="ltr"] .start-copy h1 { font-size: 36px; }
+    .section-action .primary { gap: 12px; }
+    .floating-wa { max-width: calc(100vw - 40px); font-size: 14px; }
+}
+@media (max-width: 350px) {
+    .language-switcher > svg { display: none; }
+    .menu-toggle .menu-label { font-size: 12px; }
+}

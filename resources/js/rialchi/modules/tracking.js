@@ -1,3 +1,4 @@
+import { t } from './i18n.js';
 export function initTracking() {
     const form = document.querySelector('#tracking-form');
     if (!form) return;
@@ -14,7 +15,7 @@ export function initTracking() {
         if (submit.disabled) return;
         input.value = input.value.trim();
         if (!input.value) {
-            input.setCustomValidity('أدخل رقم البوليصة.');
+            input.setCustomValidity(t('أدخل رقم البوليصة.'));
             input.reportValidity();
             return;
         }

@@ -1,3 +1,4 @@
+import { t } from './i18n.js';
 // Only the highest remaining container in a column can be unloaded.
 export function isAccessible(target, containers) {
     return !target.removed && !containers.some(item => !item.removed && item.col === target.col && item.row > target.row);
@@ -23,7 +24,7 @@ export function initPort() {
             const available = isAccessible(c, containers);
             c.el.classList.toggle('is-available', available);
             c.el.setAttribute('aria-disabled', String(!available || busy));
-            c.el.setAttribute('aria-label', `حاوية ${c.col+1}، مستوى ${c.row+1}، ${available ? 'متاحة للتفريغ' : 'أزل الحاوية التي فوقها أولًا'}`);
+            c.el.setAttribute('aria-label', t('حاوية :col، مستوى :row، :availability', {col:c.col+1, row:c.row+1, availability: available ? t('متاحة للتفريغ') : t('أزل الحاوية التي فوقها أولًا')}));
         });
     };
     // A single clock keeps cable, trolley, spreader and cargo physically connected.
@@ -59,31 +60,31 @@ export function initPort() {
     const unload = async cargo => {
         if(busy || cargo.removed) return;
         if(!isAccessible(cargo,containers)) {
-            status.textContent = 'هذه الحاوية تحت حاوية أخرى. أزل الحاوية التي فوقها أولًا.';
+            status.textContent = t('هذه الحاوية تحت حاوية أخرى. أزل الحاوية التي فوقها أولًا.');
             return;
         }
         if(document.body.classList.contains('paused') && !preference.matches) {
-            status.textContent = 'الحركة متوقفة. اضغط «تشغيل الحركة» ثم اختر الحاوية.';
+            status.textContent = t('الحركة متوقفة. اضغط «تشغيل الحركة» ثم اختر الحاوية.');
             return;
         }
         busy=true; refresh(); scene.classList.add('is-working'); cargo.el.classList.add('is-selected');
-        status.textContent='الونش يتحرك إلى الحاوية المختارة وينزل الحبل.';
+        status.textContent=t('الونش يتحرك إلى الحاوية المختارة وينزل الحبل.');
         await moveHoist(cargo.x+39,150,850);
         await moveHoist(cargo.x+39,cargo.y-8,650);
-        status.textContent='تم تثبيت الحاوية. الونش يرفعها وينقلها إلى الرصيف.';
+        status.textContent=t('تم تثبيت الحاوية. الونش يرفعها وينقلها إلى الرصيف.');
         await moveHoist(cargo.x+39,150,800,cargo);
         scene.classList.add('workers-guiding');
         await moveHoist(939,150,1200,cargo);
         await moveHoist(939,370,850,cargo);
         await moveHoist(939,150,650);
-        status.textContent='الحاوية على الرصيف. الشاحنة تصل لاستلامها.';
+        status.textContent=t('الحاوية على الرصيف. الشاحنة تصل لاستلامها.');
         await moveTruck(895,1200);
         scene.classList.add('workers-loading');
         await moveHoist(939,370,650);
         await moveHoist(939,300,500,cargo);
         await moveHoist(939,364,550,cargo);
         await moveHoist(939,150,650);
-        status.textContent='ثبّت العمال الحاوية على الشاحنة. الشاحنة تغادر الميناء.';
+        status.textContent=t('ثبّت العمال الحاوية على الشاحنة. الشاحنة تغادر الميناء.');
         scene.classList.remove('workers-guiding','workers-loading');
         await moveTruck(1250,1500,cargo);
         const hadFocus = document.activeElement === cargo.el;
@@ -92,7 +93,7 @@ export function initPort() {
         busy=false; refresh();
         if (hadFocus) (containers.find(item => isAccessible(item, containers))?.el ?? document.querySelector('.start-copy .primary')).focus();
         const remaining=containers.filter(c=>!c.removed).length;
-        status.textContent=remaining ? `غادرت الشاحنة. بقيت ${remaining} حاوية؛ اختر التالية من أعلى الرصّة.` : 'اكتمل تفريغ السفينة.';
+        status.textContent=remaining ? t('غادرت الشاحنة. بقيت :count حاوية؛ اختر التالية من أعلى الرصّة.', {count:remaining}) : t('اكتمل تفريغ السفينة.');
 
     };
     containers.forEach(c=> {
