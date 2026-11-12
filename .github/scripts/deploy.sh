@@ -13,7 +13,7 @@ mkdir -p storage/framework/{cache/data,sessions,views} storage/logs bootstrap/ca
 composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction --no-progress --no-scripts
 composer check-platform-reqs --no-dev
 # Only mirror directories owned by the application. Keep runtime and uploaded files.
-for dir in vendor app config resources routes; do
+for dir in vendor app config resources routes lang; do
     rsync -a --delete-delay "$stage/$dir/" "$live/$dir/"
 done
 rsync -a --exclude=/cache/ bootstrap/ "$live/bootstrap/"

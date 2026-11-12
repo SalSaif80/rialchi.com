@@ -1,3 +1,4 @@
+import { t } from './i18n.js';
 export function initNavigation() {
     const toggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('#nav');
@@ -7,8 +8,8 @@ export function initNavigation() {
     const setOpen = (open) => {
         nav.classList.toggle('open', open);
         toggle.setAttribute('aria-expanded', String(open));
-        toggle.setAttribute('aria-label', open ? 'إغلاق القائمة' : 'فتح القائمة');
-        label.textContent = open ? 'إغلاق' : 'القائمة';
+        toggle.setAttribute('aria-label', open ? t('إغلاق القائمة') : t('فتح القائمة'));
+        label.textContent = open ? t('إغلاق') : t('القائمة');
         nav.inert = mobile.matches && !open;
     };
     setOpen(false);

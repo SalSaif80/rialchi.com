@@ -1,8 +1,9 @@
+import { t } from './i18n.js';
 export function initJourney() {
     const steps = [...document.querySelectorAll('.journey-step')];
     const visual = document.querySelector('.journey-visual');
     if (!steps.length || !visual) return;
-    const labels = ['فكرة تبدأ منها الرحلة', 'تفاصيل تعرف بها منتجك ومورّده', 'مواصفات تتحقق منها قبل الشحن', 'طريق تختاره وفق الوقت والتكلفة', 'شحنة تصل، وتفاصيل تراجعها'];
+    const labels = [t('فكرة تبدأ منها الرحلة'), t('تفاصيل تعرف بها منتجك ومورّده'), t('مواصفات تتحقق منها قبل الشحن'), t('طريق تختاره وفق الوقت والتكلفة'), t('شحنة تصل، وتفاصيل تراجعها')];
     let active = -1;
     let scheduled = false;
     const update = () => {

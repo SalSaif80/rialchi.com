@@ -12,7 +12,7 @@ class PhoneLogin extends Login
 {
     protected function getEmailFormComponent(): Component
     {
-        return TextInput::make('phone')->label('رقم الجوال')->tel()->required()
+        return TextInput::make('phone')->label(__('رقم الجوال'))->tel()->required()
             ->placeholder('+966…')->autocomplete('username')->autofocus();
     }
 
@@ -23,6 +23,6 @@ class PhoneLogin extends Login
 
     protected function throwFailureValidationException(): never
     {
-        throw ValidationException::withMessages(['data.phone' => 'تحقق من رقم الجوال وكلمة المرور.']);
+        throw ValidationException::withMessages(['data.phone' => __('تحقق من رقم الجوال وكلمة المرور.')]);
     }
 }

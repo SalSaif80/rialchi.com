@@ -37,7 +37,7 @@ jobs:
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         run: |
           mkdir "$RUNNER_TEMP/release"
-          git archive HEAD app artisan bootstrap composer.json composer.lock config database public resources routes | tar -x -C "$RUNNER_TEMP/release"
+          git archive HEAD lang app artisan bootstrap composer.json composer.lock config database public resources routes | tar -x -C "$RUNNER_TEMP/release"
           rm -rf "$RUNNER_TEMP/release/public/build"
           cp -a public/build "$RUNNER_TEMP/release/public/"
           tar -czf "$RUNNER_TEMP/release.tgz" -C "$RUNNER_TEMP/release" .

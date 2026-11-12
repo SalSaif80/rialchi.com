@@ -13,9 +13,9 @@ class ShippingOverview extends StatsOverviewWidget
     protected function getStats(): array
     {
         return [
-            Stat::make('إجمالي الشحنات', Shipment::count())->url(ShipmentResource::getUrl()),
-            Stat::make('شحنات أضيفت اليوم', Shipment::where('created_at', '>=', now('Asia/Riyadh')->startOfDay()->utc())->count()),
-            Stat::make('العملاء', Customer::count()),
+            Stat::make(__('إجمالي الشحنات'), Shipment::count())->url(ShipmentResource::getUrl()),
+            Stat::make(__('شحنات أضيفت اليوم'), Shipment::where('created_at', '>=', now('Asia/Riyadh')->startOfDay()->utc())->count()),
+            Stat::make(__('العملاء'), Customer::count()),
         ];
     }
 }

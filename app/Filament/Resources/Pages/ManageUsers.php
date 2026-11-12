@@ -13,6 +13,6 @@ class ManageUsers extends ManageRecords
 
     protected function getHeaderActions(): array
     {
-        return [CreateAction::make()->label('إضافة مستخدم')->mutateDataUsing(fn (array $data) => $data + ['email' => Str::uuid().'@users.invalid'])];
+        return [CreateAction::make()->label(__('إضافة مستخدم'))->mutateDataUsing(fn (array $data) => $data + ['email' => Str::uuid().'@users.invalid'])];
     }
 }

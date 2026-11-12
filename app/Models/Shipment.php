@@ -37,11 +37,14 @@ class Shipment extends Model
 
     public function trackingUrl(): string
     {
-        return route('rialchi.tracking', ['number' => $this->number]);
+        return route('rialchi.tracking', ['number' => $this->number, 'locale' => app()->getLocale()]);
     }
 
     public function message(): string
     {
-        return "عميلنا العزيز، رقم تتبع شحنتك لدى ريالتشي هو {$this->number}. يمكنك متابعة شحنتك هنا: ".$this->trackingUrl();
+        return __('عميلنا العزيز، رقم تتبع شحنتك لدى ريالتشي هو :number. يمكنك متابعة شحنتك هنا: :url', [
+            'number' => $this->number,
+            'url' => $this->trackingUrl(),
+        ]);
     }
 }
