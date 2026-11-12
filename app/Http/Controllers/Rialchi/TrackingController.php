@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Shipment;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 final class TrackingController extends Controller
 {
@@ -32,15 +31,11 @@ final class TrackingController extends Controller
 
     private function findShipment(string $number): ?Shipment
     {
-        $cacheKey = 'shipment:tracking:' . hash('sha256', $number);
-
-        return Cache::remember(
-            key: $cacheKey,
-            ttl: now()->addMinutes(10),
-            callback: fn (): ?Shipment => Shipment::query()
-                ->where('number', $number)
-                ->with('events.status')
-                ->first(),
-        );
+        // Read current events directly; serialized Eloquent models are not
+        // supported by the cache's restricted unserialization settings.
+        return Shipment::query()
+            ->where('number', $number)
+            ->with('events.status')
+            ->first();
     }
 }
