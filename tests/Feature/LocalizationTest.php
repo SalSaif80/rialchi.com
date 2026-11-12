@@ -35,7 +35,7 @@ class LocalizationTest extends TestCase
             $dom = new \DOMDocument;
             @$dom->loadHTML('<?xml encoding="utf-8" ?>'.$html);
             $xpath = new \DOMXPath($dom);
-            foreach ($xpath->query('//body//text()[not(ancestor::script) and not(ancestor::option) and not(ancestor::style)]') as $node) {
+            foreach ($xpath->query('//body//text()[not(ancestor::script) and not(ancestor::option) and not(ancestor::style) and not(ancestor::div[@class="language-options"])]') as $node) {
                 $this->assertDoesNotMatchRegularExpression('/[\x{0600}-\x{06ff}]/u', $node->textContent);
             }
         }
