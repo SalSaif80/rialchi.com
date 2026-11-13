@@ -1,0 +1,160 @@
+/* A single, direction-aware header for all three languages. */
+.site-header {
+    height: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 0 clamp(16px, 3vw, 44px);
+    border-top: 0;
+    border-bottom: 1px solid #e4e7ed;
+    background: #fff;
+    box-shadow: 0 3px 20px #1b223605;
+}
+.site-header .brand { padding: 0; flex: none; }
+.site-header .brand img { height: 74px; width: 112px; max-width: none; object-fit: contain; }
+.site-header #nav {
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    width: auto;
+    max-width: none;
+    gap: 6px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    overflow: visible;
+}
+.site-header #nav > a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    gap: 8px;
+    min-height: 44px;
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    white-space: nowrap;
+    transition: background .2s, color .2s;
+}
+.site-header #nav > a:hover { background: #eef1f6; color: var(--ink); }
+.site-header #nav > .tracking-link { background: var(--ink); color: #fff; }
+.site-header #nav > .tracking-link:hover { background: #303b56; color: #fff; }
+.site-header #nav > .quote-link { background: #f6eddf; color: #795221; }
+.site-header #nav small { position: static; display: none; }
+.site-header #nav .quote-link small { display: inline-flex; }
+.site-header #nav .quote-link small svg { width: 18px; height: 18px; }
+.nav-caption { display: none; }
+.header-actions { display: flex; align-items: center; gap: 10px; flex: none; }
+.header-language { position: relative; }
+.header-language summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 44px;
+    padding: 9px 11px;
+    border: 1px solid #e0e3eb;
+    border-radius: 10px;
+    background: #fff;
+    cursor: pointer;
+    list-style: none;
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: 500;
+}
+.header-language summary::-webkit-details-marker { display: none; }
+.header-language summary:hover, .header-language[open] summary { background: #f4f6fa; border-color: #b7bfce; }
+.language-globe { width: 17px; height: 17px; flex: none; }
+.language-chevron { width: 13px; height: 13px; transition: transform .2s; }
+.header-language[open] .language-chevron { transform: rotate(180deg); }
+.language-options {
+    position: absolute;
+    inset-inline-end: 0;
+    top: calc(100% + 12px);
+    z-index: 3;
+    width: 176px;
+    padding: 8px;
+    border: 1px solid #e0e3eb;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 12px 32px #1b22361a;
+    animation: header-panel-in .2s ease both;
+}
+.language-caption { display: block; padding: 7px 10px; color: var(--muted); font-size: 11px; }
+.language-options a { display: flex; align-items: center; justify-content: space-between; min-height: 44px; padding: 8px 10px; border-radius: 8px; font-size: 14px; }
+.language-options a:hover { background: #f0f3f8; }
+.language-options a[aria-current] { background: #f6eddf; color: #795221; font-weight: 600; }
+.site-header .menu-toggle { display: none; }
+@keyframes header-panel-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 1024px) {
+    .site-header { height: 80px; gap: 12px; padding-inline: 16px; }
+    .site-header .brand img { width: 100px; height: 68px; }
+    .site-header .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 44px;
+        min-width: 44px;
+        padding: 10px 12px;
+        border: 1px solid var(--ink);
+        border-radius: 10px;
+        background: var(--ink);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1.5;
+    }
+    .site-header .menu-toggle[aria-expanded="true"] { background: #303b56; }
+    .site-header .menu-icon { position: relative; width: 18px; height: 16px; flex: none; }
+    .site-header .menu-icon i { position: absolute; inset-inline: 0; top: 7px; height: 2px; border-radius: 2px; background: currentColor; transition: transform .24s ease, opacity .2s; }
+    .site-header .menu-icon i:first-child { transform: translateY(-5px); }
+    .site-header .menu-icon i:last-child { transform: translateY(5px); }
+    .site-header [aria-expanded="true"] .menu-icon i:first-child { transform: rotate(45deg); }
+    .site-header [aria-expanded="true"] .menu-icon i:nth-child(2) { opacity: 0; }
+    .site-header [aria-expanded="true"] .menu-icon i:last-child { transform: rotate(-45deg); }
+    .site-header #nav {
+        position: absolute;
+        inset: calc(100% + 8px) 12px auto;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+        max-height: calc(100dvh - 108px);
+        overflow-y: auto;
+        padding: 12px;
+        border: 1px solid #dfe3eb;
+        border-radius: 16px;
+        background: #fff;
+        box-shadow: 0 16px 40px #1b223629;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-8px);
+        transition: opacity .24s ease, transform .24s ease, visibility 0s .24s;
+    }
+    .site-header #nav.open { visibility: visible; opacity: 1; transform: translateY(0); transition-delay: 0s; }
+    .site-header #nav > a { justify-content: space-between; width: 100%; min-height: 52px; padding: 12px 16px; font-size: 16px; white-space: normal; }
+    .site-header #nav small { display: inline-flex; flex: none; }
+    .site-header #nav small svg { width: 18px; height: 18px; }
+    .nav-caption { display: block; padding: 4px 16px 8px; font-size: 12px; color: var(--muted); }
+}
+@media (max-width: 359px) {
+    .site-header { padding-inline: 12px; }
+    .site-header .brand img { width: 88px; }
+    .site-header .menu-label { display: none; }
+    .header-actions { gap: 7px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .site-header *, .site-header #nav { transition: none !important; animation: none !important; }
+}

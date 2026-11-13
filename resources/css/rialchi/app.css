@@ -5,6 +5,7 @@
 
 @import './beginner.css';
 @import './identity.css';
+@import './header.css';
 
 .cargo-container.is-selected rect,
 .cargo-container.is-available:hover rect { fill: var(--gold); }
