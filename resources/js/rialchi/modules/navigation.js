@@ -6,7 +6,7 @@ export function initNavigation() {
     const language = document.querySelector('.header-language');
     const closeLanguage = () => { if (language) language.open = false; };
     const label = toggle.querySelector('.menu-label');
-    const mobile = matchMedia('(max-width: 880px)');
+    const mobile = matchMedia('(max-width: 1024px)');
     const setOpen = (open) => {
         if (open) closeLanguage();
         nav.classList.toggle('open', open);

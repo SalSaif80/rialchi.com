@@ -97,7 +97,7 @@
 .language-options a[aria-current] { background: #f6eddf; color: #795221; font-weight: 600; }
 .site-header .menu-toggle { display: none; }
 @keyframes header-panel-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
-@media (max-width: 880px) {
+@media (max-width: 1024px) {
     .site-header { height: 80px; gap: 12px; padding-inline: 16px; }
     .site-header .brand img { width: 100px; height: 68px; }
     .site-header .menu-toggle {
